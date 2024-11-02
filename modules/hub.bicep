@@ -77,7 +77,7 @@ module fwPolicy 'br/public:avm/res/network/firewall-policy:0.2.0' = {
     tier: AzFwTier
     ruleCollectionGroups: [
       {
-        nme: 'DefaultNetworkRuleCollectionGroup'
+        name: 'DefaultNetworkRuleCollectionGroup'
         priority: 100
         ruleCollections: [
           {
