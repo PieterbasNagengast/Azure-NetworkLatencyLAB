@@ -132,7 +132,7 @@ module vnet 'br/public:avm/res/network/virtual-network:0.4.0' = {
 }
 
 module vm 'br/public:avm/res/compute/virtual-machine:0.7.0' = [
-  for (zone,i) in vmAvailabilityZones: {
+  for (zone, i) in vmAvailabilityZones: {
     name: '${vmName}${zone}-deployment'
     params: {
       name: '${vmName}${zone}'
@@ -172,12 +172,16 @@ module vm 'br/public:avm/res/compute/virtual-machine:0.7.0' = [
       vmSize: vmSKU
       zone: zone
       extensionCustomScriptConfig: {
-        fileUris: [
-          'https://raw.githubusercontent.com/PieterbasNagengast/Azure-NetworkLatencyLAB/refs/heads/main/scripts/InstallAndSetPreReqs.ps1'
+        enabled: true
+        fileData: [
+          {
+            uri: 'https://raw.githubusercontent.com/PieterbasNagengast/Azure-NetworkLatencyLAB/refs/heads/main/scripts/InstallAndSetPreReqs.ps1'
+          }
         ]
+      }
+      extensionCustomScriptProtectedSetting: {
         commandToExecute: 'powershell -ExecutionPolicy Unrestricted -File InstallAndSetPreReqs.ps1'
       }
     }
   }
 ]
-

@@ -91,7 +91,8 @@ try {
     if (-not $taskState) {
         $action = New-ScheduledTaskAction -Execute "C:\temp\psping64.exe" -Argument "-s $($ipAddress):$($PsPingTcpPort) -nobanner" -WorkingDirectory "C:\temp" 
         $trigger = New-ScheduledTaskTrigger -AtLogOn
-        Register-ScheduledTask -TaskName "PsPing" -Action $action -Trigger $trigger -Description "PsPing task to listen on port $PsPingTcpPort with ip address $ipAddress" -RunLevel Limited
+        $principal = New-ScheduledTaskPrincipal -GroupId "BUILTIN\Administrators"
+        Register-ScheduledTask -TaskName "PsPing" -Action $action -Trigger $trigger -Description "PsPing task to listen on port $PsPingTcpPort with ip address $ipAddress" -Principal $principal
         write-host "PsPing task created" -ForegroundColor Green
     } else {
         write-host "PsPing task already exists" -ForegroundColor Green
