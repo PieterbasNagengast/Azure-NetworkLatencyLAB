@@ -81,11 +81,11 @@ module fwPolicy 'br/public:avm/res/network/firewall-policy:0.2.0' = {
         priority: 100
         ruleCollections: [
           {
-            name: 'ALLOW-NetworkRuleCollection'
-            priority: 100
             action: {
               type: 'Allow'
             }
+            name: 'ALLOW-NetworkRuleCollection'
+            priority: 100
             ruleCollectionType: 'FirewallPolicyFilterRuleCollection'
             rules: [
               {
@@ -108,9 +108,6 @@ module fwPolicy 'br/public:avm/res/network/firewall-policy:0.2.0' = {
                   '*'
                 ]
                 sourceIpGroups: []
-                ruleAction: {
-                  type: 'Allow'
-                }
               }
             ]
           }

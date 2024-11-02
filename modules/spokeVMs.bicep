@@ -171,6 +171,12 @@ module vm 'br/public:avm/res/compute/virtual-machine:0.7.0' = [
       osType: 'Windows'
       vmSize: vmSKU
       zone: zone
+      extensionCustomScriptConfig: {
+        fileUris: [
+          'https://raw.githubusercontent.com/PieterbasNagengast/Azure-NetworkLatencyLAB/refs/heads/main/scripts/InstallAndSetPreReqs.ps1'
+        ]
+        commandToExecute: 'powershell -ExecutionPolicy Unrestricted -File InstallAndSetPreReqs.ps1'
+      }
     }
   }
 ]
